@@ -279,19 +279,6 @@ This project demonstrates concepts from:
 - Network Security
 
 ---
-##  Screenshots
-
-### Home Page
-
-![Home Page](screenshots/home.png)
-
-### Legitimate URL Detection
-
-![Legitimate URL](screenshots/legitimate_result.png)
-
-### Phishing URL Detection
-
-![Phishing URL](screenshots/phishing_result.png)
 
 ##  Author
 
