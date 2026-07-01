@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URL Phishing Dectector</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;}
+
+body{font-family:Poppins,sans-serif;
+    background:#0a0a0f;
+
+    background-image:
+    linear-gradient(rgba(0,255,255,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,255,.05) 1px,transparent 1px);
+    background-size:40px 40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    color:white;
+
+}
+
+.container{
+    width:500px;
+    background:#11111b;
+    border:2px solid #00f5ff;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 0 25px rgba(0,245,255,.4);
+
+}
+
+h1{
+    text-align:center;
+    font-family:Orbitron;
+    color:#00f5ff;
+    margin-bottom:10px;
+}
+
+p{
+    text-align:center;
+    color:#aaa;
+    margin-bottom:30px;}
+
+input{
+    width:100%;
+    padding:15px;
+
+    background:#1a1a28;
+    color:white;
+    border:2px solid #00f5ff;
+    border-radius:8px;
+
+    font-size:16px;
+    outline:none;
+}
+
+input:focus{
+
+    box-shadow:0 0 15px cyan;}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    background:linear-gradient(90deg,#00f5ff,#ff00ff);
+    border:none;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;}
+
+button:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 20px cyan;
+}
+
+.result{
+    margin-top:30px;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.safe{
+    border:2px solid #00ff88;
+    box-shadow:0 0 15px #00ff88;}
+
+.danger{
+    border:2px solid #ff3355;
+    box-shadow:0 0 15px #ff3355;}
+
+.warning{
+
+    border:2px solid orange;
+
+    box-shadow:0 0 15px orange;
+
+}
+
+.confidence{
+
+    margin-top:10px;
+
+    color:#ddd;
+
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>URL Phishing Detector</h1>
+
+<p>Real Time Phishing URL Detection</p>
+
+<form action="/predict" method="POST">
+
+<input
+type="text"
+name="url"
+placeholder="Enter URL"
+value="{{ url if url else '' }}"
+required>
+
+<button type="submit">
+SCAN URL
+</button>
+
+</form>
+
+{% if prediction %}
+<div class="result {{ status }}">
+
+<h2>{{ prediction }}</h2>
+<div class="confidence">
+
+Confidence:<strong>{{ confidence }}%</strong>
+
+</div>
+
+</div>
+{% endif %}
+
+</div>
+</body>
+</html>
