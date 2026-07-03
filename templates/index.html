@@ -109,11 +109,13 @@ button:hover{
 
 .confidence{
 
+
     margin-top:10px;
 
     color:#ddd;
 
 }
+
 
 </style>
 </head>
@@ -142,16 +144,48 @@ SCAN URL
 {% if prediction %}
 <div class="result {{ status }}">
 
-<h2>{{ prediction }}</h2>
-<div class="confidence">
+    <h2>{{ prediction }}</h2>
 
-Confidence:<strong>{{ confidence }}%</strong>
+    <div class="confidence">
+        Confidence: <strong>{{ confidence }}%</strong>
+    </div>
 
-</div>
+    {% if domain_info %}
+
+    <hr style="margin:20px 0;border:1px solid #333;">
+
+    <h3>🛡 Domain Information</h3>
+
+    <p><strong>Domain:</strong> {{ domain_info.domain }}</p>
+
+    <p>
+        <strong>Status:</strong>
+
+        {% if domain_info.exists %}
+            ✅ Registered
+        {% else %}
+            ❌ Not Registered
+        {% endif %}
+    </p>
+
+    {% if domain_info.exists %}
+
+    <p><strong>Registrar:</strong> {{ domain_info.registrar }}</p>
+
+    <p><strong>Created On:</strong> {{ domain_info.creation_date }}</p>
+
+    {% endif %}
+
+    <hr style="margin:20px 0;border:1px solid #333;">
+
+    <h3>💡 Recommendation</h3>
+
+    <p>{{ recommendation }}</p>
+
+    {% endif %}
 
 </div>
 {% endif %}
-
 </div>
 </body>
 </html>
