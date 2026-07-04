@@ -21,8 +21,8 @@ def predict():
     # Check if domain exists
     domain_info = check_domain(url)
 
-    # If domain does not exist
-    if not domain_info["exists"]:
+    # Domain definitely not registered
+    if domain_info["exists"] is False:
         return render_template(
             "index.html",
             prediction="❌ Domain is NOT Registered",
@@ -30,6 +30,18 @@ def predict():
             url=url,
             domain_info=domain_info,
             recommendation="This domain is not registered. Avoid visiting it.",
+            status="warning"
+        )
+
+    # WHOIS lookup failed
+    if domain_info["exists"] is None:
+        return render_template(
+            "index.html",
+            prediction="⚠️ Unable to Verify Domain",
+            confidence=0,
+            url=url,
+            domain_info=domain_info,
+            recommendation="The WHOIS lookup failed. This does NOT necessarily mean the domain is fake.",
             status="warning"
         )
 
