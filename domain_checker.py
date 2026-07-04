@@ -18,6 +18,7 @@ def check_domain(domain_url):
         }
 
     except Exception as e:
+        print("WHOIS ERROR:", e)
         return {
             "exists": None,
             "domain": domain,
